@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <!-- Root element: NationalParks contains one or more NationalPark entries -->
   <xs:element name="NationalParks">
     <xs:complexType>
       <xs:sequence>
-        <!-- NationalPark element: one or more parks required -->
         <xs:element name="NationalPark" maxOccurs="unbounded">
           <xs:complexType>
             <xs:sequence>
-              <!-- Name: exactly one required text element -->
               <xs:element name="Name" type="xs:string"/>
-              <!-- Phone: one or more phone numbers allowed -->
               <xs:element name="Phone" type="xs:string" maxOccurs="unbounded"/>
-              <!-- Address: required element with sub-elements and NearestAirport required attribute -->
               <xs:element name="Address">
                 <xs:complexType>
                   <xs:sequence>
@@ -23,12 +18,10 @@
                     <xs:element name="State"   type="xs:string"/>
                     <xs:element name="Zip"     type="xs:string"/>
                   </xs:sequence>
-                  <!-- NearestAirport is a REQUIRED attribute on every Address element -->
                   <xs:attribute name="NearestAirport" type="xs:string" use="required"/>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <!-- Rating is an OPTIONAL attribute on NationalPark (not all parks have it) -->
             <xs:attribute name="Rating" type="xs:string" use="optional"/>
           </xs:complexType>
         </xs:element>
