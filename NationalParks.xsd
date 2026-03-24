@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <!-- Root element: NationalParks contains one or more NationalPark entries -->
   <xs:element name="NationalParks">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="NationalPark" minOccurs="1" maxOccurs="unbounded">
+        <!-- NationalPark element: one or more parks required -->
+        <xs:element name="NationalPark" maxOccurs="unbounded">
           <xs:complexType>
             <xs:sequence>
-              <!-- Name element: exactly one required -->
-              <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1"/>
-              <!-- Phone element: one or more required (multiple phones allowed) -->
-              <xs:element name="Phone" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
-              <!-- Address element: exactly one required, contains sub-elements and NearestAirport attribute -->
-              <xs:element name="Address" minOccurs="1" maxOccurs="1">
+              <!-- Name: exactly one required text element -->
+              <xs:element name="Name" type="xs:string"/>
+              <!-- Phone: one or more phone numbers allowed -->
+              <xs:element name="Phone" type="xs:string" maxOccurs="unbounded"/>
+              <!-- Address: required element with sub-elements and NearestAirport required attribute -->
+              <xs:element name="Address">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="Number" type="xs:string" minOccurs="1" maxOccurs="1"/>
-                    <xs:element name="Street"  type="xs:string" minOccurs="1" maxOccurs="1"/>
-                    <xs:element name="City"    type="xs:string" minOccurs="1" maxOccurs="1"/>
-                    <xs:element name="State"   type="xs:string" minOccurs="1" maxOccurs="1"/>
-                    <xs:element name="Zip"     type="xs:string" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="Number" type="xs:string"/>
+                    <xs:element name="Street"  type="xs:string"/>
+                    <xs:element name="City"    type="xs:string"/>
+                    <xs:element name="State"   type="xs:string"/>
+                    <xs:element name="Zip"     type="xs:string"/>
                   </xs:sequence>
-                  <!-- NearestAirport is a REQUIRED attribute on Address -->
+                  <!-- NearestAirport is a REQUIRED attribute on every Address element -->
                   <xs:attribute name="NearestAirport" type="xs:string" use="required"/>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <!-- Rating is an OPTIONAL attribute on NationalPark -->
-            <xs:attribute name="Rating" type="xs:decimal" use="optional"/>
+            <!-- Rating is an OPTIONAL attribute on NationalPark (not all parks have it) -->
+            <xs:attribute name="Rating" type="xs:string" use="optional"/>
           </xs:complexType>
         </xs:element>
       </xs:sequence>
